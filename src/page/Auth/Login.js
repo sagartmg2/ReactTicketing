@@ -6,9 +6,11 @@ import ErrorMessage from '../../component/ErrorMessage';
 export default function Login() {
 
     const [state, setstate] = useState({
-        email: "",
-        password: "",
+        email: "dev@dev.com",
+        password: "password",
     });
+
+    const [submitted_once, setSubmittedOnce] = useState(false);
 
     const navigate = useNavigate();
 
@@ -16,10 +18,11 @@ export default function Login() {
 
         event.preventDefault();
 
+        setSubmittedOnce(true)
 
         let { email, password } = state
 
-        axios.post("http://localhost:8000/api/users/login", {
+        axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}api/users/login`, {
             email,
             password
         })
@@ -40,6 +43,8 @@ export default function Login() {
         setstate({ ...state, [e.target.name]: e.target.value })
     }
 
+    console.log("process.env.REACT_APP_SERVER_DOMAIN", process.env.REACT_APP_SERVER_DOMAIN)
+
     return (
         <div className='d-flex justify-content-center mt-5'>
             <div className='col-md-6'>
@@ -53,7 +58,7 @@ export default function Login() {
                             onChange={handleChange}
                             className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                         />
-                        <ErrorMessage />
+                        <ErrorMessage submitted_once={submitted_once} state={state} name="email" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label required-field">Password</label>
@@ -64,7 +69,7 @@ export default function Login() {
                             onChange={handleChange}
                             className="form-control" id="exampleInputPassword1"
                         />
-                        <ErrorMessage />
+                        <ErrorMessage submitted_once={submitted_once} state={state} name="password" />
                     </div>
                     <button
                         disabled={(state.email && state.password) ? false : true}

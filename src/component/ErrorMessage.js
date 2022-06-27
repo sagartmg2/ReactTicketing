@@ -1,12 +1,18 @@
 import React from 'react'
 
-export default function ErrorMessage(props) {
+export default function ErrorMessage({ submitted_once, message, state, name }) {
 
-    // let messsage = props.message ??
+  // let messsage = props.message ??
 
-    let message = props.message  ?  props.message : "required";
-    
+  if (!submitted_once) {
+    return null;
+  }
+
+  if(state[name]){
+    return null;
+  }
+
   return (
-    <small className='text-danger'>{message}</small>
+    <small className='text-danger'>{ (message ? message : "required")}</small>
   )
 }
