@@ -15,6 +15,9 @@ export default function Navbar() {
                           <Link className="nav-link" to="/signup">Signup</Link>
                         </li>
                         <li className="nav-item">
+                          <Link className="nav-link" to="/">Home</Link>
+                        </li>
+                        <li className="nav-item">
                             <a className="nav-link" href="#">Link</a>
                         </li>
                         <li className="nav-item dropdown">

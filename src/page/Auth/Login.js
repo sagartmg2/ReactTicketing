@@ -22,13 +22,16 @@ export default function Login() {
 
         let { email, password } = state
 
-        axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}api/users/login`, {
+        axios.post(`${process.env.REACT_APP_SERVER_DOMAIN}/users/login`, {
             email,
             password
         })
             .then(res => {
                 console.log({ res });
                 localStorage.setItem("access_token", res.data.access_token)
+
+                // TODO: set useContext for login status
+
                 // setLogin(true)
                 // dispatch(login())
 

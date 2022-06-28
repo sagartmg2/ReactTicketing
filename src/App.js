@@ -10,6 +10,7 @@ import ProtectedRoute from './ProtectedRoute';
 import Navbar from './component/Navbar';
 import Login from './page/Auth/Login';
 import Signup from './page/Auth/Signup';
+import Create from './page/Ticket/Create';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="tickets" >
               <Route path=":id" element={<Show />} />
+              <Route path="create" element={<Create />} />
             </Route>
           </Route>
         </Routes>
